@@ -5,6 +5,33 @@
     </head>
     <body>
         <h1>Welcome to Your Black Mirror Date Night Berkley Benton</h1>
+        <button id="begin">Click to Begin</button>
+        <h2>Your Choice</h2>
+        <div id="p1"></div>
+        <form id="form">
+            <ul>
+                <li id="l1"></li>
+                <li id="l2"></li>
+                
+            </ul>
+        </form>
+
         
+
+        <!-- jQuery -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script>
+            $("#begin").click(blackMirror);
+            function blackMirror() {
+                // alert("help")
+                $("#p1").append("<p>Choose your dress:<p>")
+                $("#l1").append("Dress 1");
+                $("#l2").append("Dress 2");
+                $("#form").append("<button>Submit</button>");
+                document.getElementsByTagName("button")[3].setAttribute("id","submit");
+            }
+
+
+        </script>
     </body>
 </html>
