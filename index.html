@@ -4,16 +4,16 @@
         <title>Black Mirror</title>
     </head>
     <body>
-        <h1>Welcome </h1>
+        <h1 align="center">Welcome </h1>
         <button id="begin">Click to Begin</button>
         <h2>Your </h2>
         <div id="p1"></div>
         <form id="form">
-            <ul>
+            <ol>
                 <li id="l1"></li>
                 <li id="l2"></li>
                 
-            </ul>
+            </ol>
         </form>
 
         
@@ -22,11 +22,12 @@
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script>
             var counter = 0;
-            var blackMirror = [["A","B"], [["a","b"],["c","d"]], 3, 4];
+            // var blackMirror = [["A","B"], [["a","b"],["c","d"]], 3, 4];
+            var blackMirror = [{option: "dress", choices: [1,2]},{option: "dinner", choices:[1,2]}];
 
             $(document).ready(function(){
                 $("#begin").click(function(){
-                    console.log(blackMirror[counter]);
+                    console.log(blackMirror[counter].option);
                     counter = (counter +1) % blackMirror.length;
                 })
             });
