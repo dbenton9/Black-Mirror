@@ -4,9 +4,9 @@
         <title>Black Mirror</title>
     </head>
     <body>
-        <h1>Welcome to Your Black Mirror Date Night Berkley Benton</h1>
+        <h1>Welcome </h1>
         <button id="begin">Click to Begin</button>
-        <h2>Your Choice</h2>
+        <h2>Your </h2>
         <div id="p1"></div>
         <form id="form">
             <ul>
@@ -21,15 +21,15 @@
         <!-- jQuery -->
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script>
-            $("#begin").click(blackMirror);
-            function blackMirror() {
-                // alert("help")
-                $("#p1").append("<p>Choose your dress:<p>")
-                $("#l1").append("Dress 1");
-                $("#l2").append("Dress 2");
-                $("#form").append("<button>Submit</button>");
-                document.getElementsByTagName("button")[3].setAttribute("id","submit");
-            }
+            var counter = 0;
+            var blackMirror = [["A","B"], [["a","b"],["c","d"]], 3, 4];
+
+            $(document).ready(function(){
+                $("#begin").click(function(){
+                    console.log(blackMirror[counter]);
+                    counter = (counter +1) % blackMirror.length;
+                })
+            });
 
 
         </script>
