@@ -9,9 +9,8 @@
         <h2>Your </h2>
         <div id="p1"></div>
         <form id="form">
-            <ol>
-                <li id="l1"></li>
-                <li id="l2"></li>
+            <ol id="list">
+               
                 
             </ol>
         </form>
@@ -23,13 +22,49 @@
         <script>
             var counter = 0;
             // var blackMirror = [["A","B"], [["a","b"],["c","d"]], 3, 4];
-            var blackMirror = [{option: "dress", choices: [1,2]},{option: "dinner", choices:[1,2]}];
+            var blackMirror = [
+                [{option: "activity", choices: ["shopping","dinner"]},{option: "dinner", choices:["cheesecake","mexican"]}],
+                [{option:""}]
+                ];
+
+
+            // ======= Work on cycle through simple array options =======
 
             $(document).ready(function(){
                 $("#begin").click(function(){
-                    console.log(blackMirror[counter].option);
-                    counter = (counter +1) % blackMirror.length;
+                    $("#begin").remove();
+
+                    // creating list option and adding class
+                    for (i = 0; i < blackMirror[counter].length; i++){
+                        console.log(i + " " + blackMirror[counter][i].option);
+                        var test = $("<li>" + blackMirror[counter][i].option + "</li>");
+                        $("#list").append(test);
+                        test.addClass("userChoice");
+                    };
+
+
+                    // var test = $("<li>" + blackMirror[counter].option + "</li>");
+                    // $("#list").append(test);
+                    // test.addClass("userChoice");
+
+                    // $("#l1").append("<button>" + blackMirror[counter].option + "</button><br>");
+                    // counter = (counter +1) % blackMirror.length;
+                    // $("#l2").append("<button>" + blackMirror[counter].option + "</button>");
+
+                    // $(".userChoice").click(function(){
+                    // console.log("i was touched");
+                    // });
+                    
+                    
+
+
                 })
+                
+                // ======= Functions ======
+
+                
+
+                
             });
 
 
