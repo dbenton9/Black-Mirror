@@ -6,13 +6,13 @@
     <body>
         <h1 align="center">Welcome </h1>
         <button id="begin">Click to Begin</button>
-        <h2>Your </h2>
+        <h2 id="question">Only if you dare! </h2>
         <div id="p1"></div>
         <form id="form">
-            <ol id="list">
+            <ul id="list">
                
                 
-            </ol>
+            </ul>
         </form>
 
         
@@ -23,49 +23,53 @@
             var counter = 0;
             // var blackMirror = [["A","B"], [["a","b"],["c","d"]], 3, 4];
             var blackMirror = [
-                [{option: "activity", choices: ["shopping","dinner"]},{option: "dinner", choices:["cheesecake","mexican"]}],
-                [{option:""}]
+                {option: "Choose your activity:", choices: ["Shopping","Dinner"]},
+                {option: "Where would you like to eat", choices:["Cheesecake","Mexican"]},
+                {option:"Do you want to have Sex?", choices:["yes","no"]}
                 ];
-
 
             // ======= Work on cycle through simple array options =======
 
-            $(document).ready(function(){
+                // ===== Events =====
                 $("#begin").click(function(){
-                    $("#begin").remove();
+                    $("#begin").remove();   // remove Begin button
+                    start();
+                });
 
-                    // creating list option and adding class
-                    for (i = 0; i < blackMirror[counter].length; i++){
-                        console.log(i + " " + blackMirror[counter][i].option);
-                        var test = $("<li>" + blackMirror[counter][i].option + "</li>");
-                        $("#list").append(test);
-                        test.addClass("userChoice");
-                    };
+                
 
-
-                    // var test = $("<li>" + blackMirror[counter].option + "</li>");
-                    // $("#list").append(test);
-                    // test.addClass("userChoice");
-
-                    // $("#l1").append("<button>" + blackMirror[counter].option + "</button><br>");
-                    // counter = (counter +1) % blackMirror.length;
-                    // $("#l2").append("<button>" + blackMirror[counter].option + "</button>");
-
-                    // $(".userChoice").click(function(){
-                    // console.log("i was touched");
-                    // });
+                $("#list").click(function(){
+                    console.log("do something"); 
+                    nextQuestion();
                     
-                    
+                    // counter = (counter + 1) % blackMirror.length;       
+                    // start();
+                });
 
-
-                })
                 
                 // ======= Functions ======
+                function start() {
+                    console.log(1234);
+                    $("#question").text(blackMirror[counter].option);                     // posing questions
+                    $(".userChoice").remove();
+                    for (i = 0; i < blackMirror[counter].choices.length; i++){            // creating list option and adding class
+                        //console.log(i + " " + blackMirror[counter].choices[i]);         // ***** CONSOLE TEST CODE *****
+                        var test = $("<li>" + blackMirror[counter].choices[i] + "</li>");                                        // defining list item as variable
+                        $("#list").append(test);                                         // appending list item variable to list
+                        test.addClass("userChoice");                                      // adding common class to all list items
+                        test.attr("id", + i);                                            // adding unique id to each list item
+                    }
+                }
 
+                function nextQuestion() {
+                    counter = (counter + 1) % blackMirror.length;   // iterating counter to cycle questios
+                    console.log(counter);                           // ***** CONSOLE TEST CODE *****
+                    start();
+                }
                 
 
                 
-            });
+            
 
 
         </script>
