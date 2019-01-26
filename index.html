@@ -20,54 +20,71 @@
         <!-- jQuery -->
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script>
+            // ===== Variable and Arrays ======
             var counter = 0;
-            // var blackMirror = [["A","B"], [["a","b"],["c","d"]], 3, 4];
             var blackMirror = [
-                {option: "Choose your activity:", choices: ["Shopping","Dinner"]},
-                {option: "Where would you like to eat", choices:["Cheesecake","Mexican"]},
-                {option:"Do you want to have Sex?", choices:["yes","no"]}
+                //level 0
+                {option: "Choose your activity:", choices: ["Dinner","Activity"]},
+                //level 1
+                [{option: "Where would you like to eat", choices:["Cheesecake Factory","Mexican"]}, {option:"Do you want to have Sex?", choices:["yes","no"]}],
+                //level 2
+                [{option: "What Kind of cheesecake would you like", choices: ["strawberry", "chocolate"]}, {option: "what would you like?", choices: ["taco", "burrito"]}, 
+                {option: "Where?", choices:["bedroom","kitchen"]}, {option: "Why not?", choices:["too tired", "too hungry"]}]
                 ];
 
-            // ======= Work on cycle through simple array options =======
+        // ======= Work on cycle through simple array options =======
 
-                // ===== Events =====
-                $("#begin").click(function(){
-                    $("#begin").remove();   // remove Begin button
-                    start();
-                });
+            // ===== Events =====
+            // Start event
+            $("#begin").click(function(){
+                $("#begin").remove();   // remove Begin button
+                start();
+            });
 
+            // Selecting choice from option
+            $("#list").click(function(e){                    
+                nextQuestion(e.target.id);      
+            });
+            
+            // ======= Functions ======
+            // First question
+            function start() {
+                $("#question").text(blackMirror[counter].option);                     // posing initial question
                 
-
-                $("#list").click(function(){
-                    console.log("do something"); 
-                    nextQuestion();
-                    
-                    // counter = (counter + 1) % blackMirror.length;       
-                    // start();
-                });
-
-                
-                // ======= Functions ======
-                function start() {
-                    console.log(1234);
-                    $("#question").text(blackMirror[counter].option);                     // posing questions
-                    $(".userChoice").remove();
-                    for (i = 0; i < blackMirror[counter].choices.length; i++){            // creating list option and adding class
-                        //console.log(i + " " + blackMirror[counter].choices[i]);         // ***** CONSOLE TEST CODE *****
-                        var test = $("<li>" + blackMirror[counter].choices[i] + "</li>");                                        // defining list item as variable
-                        $("#list").append(test);                                         // appending list item variable to list
-                        test.addClass("userChoice");                                      // adding common class to all list items
-                        test.attr("id", + i);                                            // adding unique id to each list item
-                    }
+                for (i = 0; i < blackMirror[counter].choices.length; i++){            // creating list option and adding class
+                    //console.log(i + " " + blackMirror[counter].choices[i]);         // ***** CONSOLE TEST CODE *****
+                    var test = $("<li>" + blackMirror[counter].choices[i] + "</li>");                                        // defining list item as variable
+                    $("#list").append(test);                                         // appending list item variable to list
+                    test.addClass("userChoice");                                      // adding common class to all list items
+                    test.attr("id", i);                                            // adding unique id to each list item
                 }
+            }
 
-                function nextQuestion() {
-                    counter = (counter + 1) % blackMirror.length;   // iterating counter to cycle questios
-                    console.log(counter);                           // ***** CONSOLE TEST CODE *****
-                    start();
-                }
+            // !!!!!!!!!!!!! PROBLEM: id in start loop is gettting stuck with value of "2" at level 1 option !!!!!!!!!!!!
+
+            // Following questions
+            function nextQuestion(x) {
                 
+                counter = (counter + 1) % blackMirror.length;   // iterating counter to cycle questios
 
+                console.log("x is " + x);
+                console.log(blackMirror[counter][x].choices)
+
+                $("#question").text(blackMirror[counter][x].option);
+                $(".userChoice").replaceWith();
+
+                for (j = 0; j < blackMirror[counter][x].choices.length; j++) {          // populating choices
+                    console.log(blackMirror[counter][x].choices[j]);
+                    var test = $("<li>" + blackMirror[counter][x].choices[j] + "</li>"); // defining list item as variable
+                    $("#list").append(test);                                             // appending list item variable to list
+                    test.addClass("userChoice");                                         // adding common class to all list items
+                    test.attr("id", i);                                                  // adding unique id to each list item
+                }
+            }
+                
+            console.log(blackMirror[2][3].option);
+
+            
                 
             
 
