@@ -22,9 +22,10 @@
         <script>
             // ===== Variable and Arrays ======
             var counter = 0;
+            var prevPos = 0;
             var blackMirror = [
                 //level 0
-                {option: "Choose your activity:", choices: ["Dinner","Activity"]},
+                {option: "Choose your activity:", choices: ["Dinner","Fun"]},
                 //level 1
                 [{option: "Where would you like to eat", choices:["Cheesecake Factory","Mexican"]}, {option:"Do you want to have Sex?", choices:["yes","no"]}],
                 //level 2
@@ -42,8 +43,24 @@
             });
 
             // Selecting choice from option
-            $("#list").click(function(e){                    
-                nextQuestion(e.target.id);      
+            $("#list").click(function(e){ 
+                console.log("prevPos is " + prevPos);   // ***** CONSOLE TEST CODE *****
+                s = parseInt(e.target.id, 10);          // Changing user choice to number
+                
+                currentPos = s + 2*prevPos;
+                nextQuestion(currentPos);
+
+                // if (s == 0){
+                //     nextQuestion(s);
+                // } else {
+                //     console.log(blackMirror[counter + 1].length);
+                //     s = blackMirror[counter + 1].length - 1;
+
+                //     console.log("length of s is " + s);
+                //     nextQuestion(s);
+                //     console.log(blackMirror[counter][s]);
+                // };
+                
             });
             
             // ======= Functions ======
@@ -60,34 +77,25 @@
                 }
             }
 
-            // !!!!!!!!!!!!! PROBLEM: id in start loop is gettting stuck with value of "2" at level 1 option !!!!!!!!!!!!
-
             // Following questions
             function nextQuestion(x) {
-                
+                prevPos = x;
                 counter = (counter + 1) % blackMirror.length;   // iterating counter to cycle questios
 
-                console.log("x is " + x);
-                console.log(blackMirror[counter][x].choices)
+                console.log("x is " + x);                       // ***** CONSOLE TEST CODE *****
+                console.log(blackMirror[counter][x].choices)    // ***** CONSOLE TEST CODE *****
 
-                $("#question").text(blackMirror[counter][x].option);
-                $(".userChoice").replaceWith();
+                $("#question").text(blackMirror[counter][x].option);        // Populate question
+                $(".userChoice").replaceWith();                             // clear previous choices
 
                 for (j = 0; j < blackMirror[counter][x].choices.length; j++) {          // populating choices
                     console.log(blackMirror[counter][x].choices[j]);
                     var test = $("<li>" + blackMirror[counter][x].choices[j] + "</li>"); // defining list item as variable
                     $("#list").append(test);                                             // appending list item variable to list
                     test.addClass("userChoice");                                         // adding common class to all list items
-                    test.attr("id", i);                                                  // adding unique id to each list item
+                    test.attr("id", j);                                                  // adding unique id to each list item
                 }
             }
-                
-            console.log(blackMirror[2][3].option);
-
-            
-                
-            
-
 
         </script>
     </body>
