@@ -11,6 +11,7 @@
         <form id="form">
             <ul id="list">
                
+                <!-- Javascript populates Here -->
                 
             </ul>
         </form>
@@ -33,8 +34,6 @@
                 {option: "Where?", choices:["bedroom","kitchen"]}, {option: "Why not?", choices:["too tired", "too hungry"]}]
                 ];
 
-        // ======= Work on cycle through simple array options =======
-
             // ===== Events =====
             // Start event
             $("#begin").click(function(){
@@ -44,23 +43,9 @@
 
             // Selecting choice from option
             $("#list").click(function(e){ 
-                console.log("prevPos is " + prevPos);   // ***** CONSOLE TEST CODE *****
                 s = parseInt(e.target.id, 10);          // Changing user choice to number
-                
                 currentPos = s + 2*prevPos;
                 nextQuestion(currentPos);
-
-                // if (s == 0){
-                //     nextQuestion(s);
-                // } else {
-                //     console.log(blackMirror[counter + 1].length);
-                //     s = blackMirror[counter + 1].length - 1;
-
-                //     console.log("length of s is " + s);
-                //     nextQuestion(s);
-                //     console.log(blackMirror[counter][s]);
-                // };
-                
             });
             
             // ======= Functions ======
